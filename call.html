@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Calling</title>
+</head>
+<body>
+<h2>📞 Free Calling</h2>
+<button onclick="start()">Start Microphone</button>
+<p id="status">Waiting...</p>
+
+<script>
+async function start() {
+  try {
+    await navigator.mediaDevices.getUserMedia({
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true
+      }
+    });
+    document.getElementById("status").textContent =
+      "Microphone ready";
+  } catch (e) {
+    document.getElementById("status").textContent =
+      "Microphone permission denied";
+  }
+}
+</script>
+</body>
+</html>
